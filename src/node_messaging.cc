@@ -288,7 +288,7 @@ Maybe<bool> Message::Serialize(Environment* env,
         Local<ArrayBuffer> ab = entry.As<ArrayBuffer>();
         // If we cannot render the ArrayBuffer unusable in this Isolate and
         // take ownership of its memory, copying the buffer will have to do.
-        if (!ab->IsNeuterable() || ab->IsExternal())
+        if (!ab->IsDetachable() || ab->IsExternal())
           continue;
         if (std::find(array_buffers.begin(), array_buffers.end(), ab) !=
             array_buffers.end()) {
